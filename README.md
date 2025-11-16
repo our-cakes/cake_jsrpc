@@ -2,7 +2,7 @@
 **最后更新**：2025-11-07
 # WebSocket RPC 服务端
 
-基于 Spring Boot 的 WebSocket RPC 服务器，实现 Java 与浏览器 JavaScript 之间的双向远程过程调用。
+基于 Spring Boot 的 WebSocket RPC 服务器，实现 Java 与浏览器 JavaScript 之间的双向远程过程调用，解决渗透过程加解密
 
 ## 📋 目录
 
