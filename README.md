@@ -1,9 +1,9 @@
 
-##web不加密时：
+## web不加密时：
 ![](README_files/1.jpg)
-##web数据传输全程加密时
+## web数据传输全程加密时
 ![](README_files/2.jpg)
-##js_rpc工具工作原理
+## js_rpc工具工作原理
 ![](README_files/3.jpg)
 **最后更新**：2025-11-011
 # WebSocket RPC 服务端
@@ -218,6 +218,7 @@ function addSafe(a, b) {//自定义方法
 client.register('addSafe', (resolve,a,b) => {//addSafe，注册完成后在yakit调用 ，参考3. 动态调用方法
   var res = addSafe(a,b)
   resolve(res); // 返回页面标题给服务器
+
 });
 ```
 ## yakit语法：enc为js注册函数名、data为要加密的值。可自定义添加到afterRequest、beforeRequest、hijackHTTPResponse
