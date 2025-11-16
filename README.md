@@ -1,3 +1,21 @@
+
+**最后更新**：2025-11-07
+# WebSocket RPC 服务端
+
+基于 Spring Boot 的 WebSocket RPC 服务器，实现 Java 与浏览器 JavaScript 之间的双向远程过程调用。
+
+## 📋 目录
+
+- [技术栈](#技术栈)
+- [项目结构](#项目结构)
+- [快速开始](#快速开始)
+- [API 文档](#api-文档)
+- [配置说明](#配置说明)
+- [开发指南](#开发指南)
+- [常见问题](#常见问题)
+
+---
+
 ## 🛠 技术栈
 
 | 技术 | 版本 | 说明 |
@@ -10,11 +28,11 @@
 
 ---
 
-## 📁 项目结构
+## 📁 项目结构（可直接看api）
 
 ```
 java_rpc_spring/
-├── src/main/java/cake/jsrpc/
+├── src/main/java/org/example/
 │   ├── Main.java                           # 主入口
 │   └── websocket/
 │       ├── WebSocketRpcApplication.java    # Spring Boot 启动类
@@ -75,11 +93,8 @@ curl http://localhost:10087/api/rpc/clients
 
 #### 连接地址
 ```
-ws://localhost:10087/ws?group={groupName}
+ws://localhost:10087/ws
 ```
-
-**参数说明**：
-- `group`（可选）：客户端分组名称，用于多客户端管理
 
 #### 消息协议
 
@@ -176,6 +191,66 @@ GET /api/rpc/methods
 
 ---
 
+
+## ⚙️ 注册方法：
+```js
+client.register('a', (resolve, a, b) => {
+  var res = exec
+  resolve(res); // 计算并返回结果
+});
+
+function addSafe(a, b) {//自定义方法
+  const numA = Number(a);
+  const numB = Number(b);
+
+  if (isNaN(numA) || isNaN(numB)) {
+    throw new Error('参数必须是有效的数字');
+  }
+
+  return numA + numB;
+}
+client.register('addSafe', (resolve,a,b) => {//addSafe，注册完成后在yakit调用 ，参考3. 动态调用方法
+  var res = addSafe(a,b)
+  resolve(res); // 返回页面标题给服务器
+});
+```
+## yakit语法：enc为js注册函数名、data为要加密的值。可自定义添加到afterRequest、beforeRequest、hijackHTTPResponse
+```coderc为例
+# codec plugin
+
+/*
+Codec Plugin 可以支持在 Codec 中自定义编码解码，自定义 Bypass 与字符串处理函数
+
+函数定义非常简单
+
+func(i: string) string
+*/
+
+handle = func(data) {  
+    # 构造请求体  
+    //dataa = {}
+    requestBody = {  
+        "action": "enc",  
+        "params": [data]  
+    }  
+    # 发送 HTTP POST 请求  
+    rsp, err = poc.Post(  
+        "http://127.0.0.1:10087/api/rpc/call",  
+        poc.json(requestBody),  
+        poc.timeout(30000)  
+    )~
+      
+    // if err != nil {  
+    //     return sprintf("请求失败: %v", err)  
+    // }  
+      
+    # 解析响应  
+    result = rsp.GetBody()  
+    return json.Find(result, "$.result") 
+}
+
+```
+
 ## ⚙️ 配置说明
 
 ### application.properties
@@ -197,7 +272,7 @@ logging.level.cake.jsrpc.websocket=DEBUG
 
 **使用示例**：
 ```bash
-java -jar -Dserver.port=8080 websocket-rpc-0.0.1-SNAPSHOT.jar
+java -jar  websocket-rpc-0.0.1-SNAPSHOT.jar
 ```
 
 ---
