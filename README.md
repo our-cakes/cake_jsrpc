@@ -1,8 +1,14 @@
 
-**最后更新**：2025-11-07
+##web不加密时：
+![](README_files/1.jpg)
+##web数据传输全程加密时
+![](README_files/2.jpg)
+##js_rpc工具工作原理
+![](README_files/3.jpg)
+**最后更新**：2025-11-011
 # WebSocket RPC 服务端
 
-基于 Spring Boot 的 WebSocket RPC 服务器，实现 Java 与浏览器 JavaScript 之间的双向远程过程调用，解决渗透过程加解密
+基于 Spring Boot 的 WebSocket RPC 服务器，实现 Java 与浏览器 JavaScript 之间的双向远程过程调用。
 
 ## 📋 目录
 

@@ -10,7 +10,7 @@
     </parent>
 
     <groupId>cake.jsrpc</groupId>
-    <artifactId>cake_jsprc-rpc</artifactId>
+    <artifactId>cake_jsprc</artifactId>
     <version>V1.0</version>
     <name>WebSocketRpc</name>
     <description>WebSocket RPC Server</description>
