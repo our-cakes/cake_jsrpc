@@ -61,12 +61,12 @@ cd java_rpc_spring
 mvn clean package -DskipTests
 ```
 
-生成文件：`target/websocket-rpc-0.0.1-SNAPSHOT.jar`
+生成文件：`target/cake_jsprc.jar`
 
 ### 2. 启动服务
 
 ```bash
-java -jar target/websocket-rpc-0.0.1-SNAPSHOT.jar
+java -jar target/cake_jsprc.jar
 ```
 
 启动成功后会看到：
@@ -272,7 +272,7 @@ logging.level.cake.jsrpc.websocket=DEBUG
 
 **使用示例**：
 ```bash
-java -jar  websocket-rpc-0.0.1-SNAPSHOT.jar
+java -jar  cake_jsprc.jar
 ```
 
 ---
@@ -414,7 +414,7 @@ Web server failed to start. Port 10087 was already in use.
 **解决方案**：
 ```bash
 # 方案1：更改端口
-java -jar -Dserver.port=8080 websocket-rpc-0.0.1-SNAPSHOT.jar
+java -jar -Dserver.port=8080 cake_jsprc.jar
 
 # 方案2：查找并终止占用进程
 lsof -ti:10087 | xargs kill -9
@@ -513,7 +513,7 @@ resultHolder.wait(10000); // 10秒
 
 **启动参数**：
 ```bash
-java -Xms256m -Xmx512m -jar websocket-rpc-0.0.1-SNAPSHOT.jar
+java -Xms256m -Xmx512m -jar cake_jsprc.jar
 ```
 
 ---
